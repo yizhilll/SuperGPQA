@@ -29,7 +29,7 @@ This repository contains the evaluation code for the paper "[SuperGPQA: Scaling 
 ## 🏆 Main Result
 The table below presents the performance of various models across different tasks and difficulty levels. The models are categorized into three main groups: Reasoning Models, Chat Models, and Base Models. Each model is evaluated based on overall performance (sample, subfield, field, and discipline), as well as performance on easy, medium, and hard samples. The performance scores are provided to give an overview of how each model performs across different aspects, allowing for a comparison of strengths and weaknesses.
 
-All results can be viewed on the leaderboard.
+All results can be viewed on the [leaderboard](https://huggingface.co/spaces/m-a-p/SuperGPQA) and all model's response/answer can be viewed on [here](https://huggingface.co/datasets/m-a-p/SuperGPQA-Records)
 
 **Reasoning Models**
 | Model                          | Overall (sample) | Overall (subfield) | Overall (field) | Overall (discipline) | Easy (sample) | Middle (sample) | Hard (sample) |
@@ -154,6 +154,37 @@ export PYTHONPATH=$(pwd)
 python eval/eval.py --evaluate_all --excel_output --json_output --output_dir results --save_dir results_with_status
 ```
 
+## 📜 License
+
+SuperGPQA is released under the **CC0 license**, meaning that **MAP does not assert any rights** over the dataset. However, since a small portion of the dataset is derived from existing publicly available resources, **users must comply with the original dataset licenses when using those specific parts**.
+
+SuperGPQA is a large-scale benchmark designed to evaluate general-purpose question-answering abilities in complex reasoning tasks. The dataset primarily consists of **newly created** questions and tasks, supplemented with a selection of transformed data from existing benchmarks. While the majority of the dataset is original, we acknowledge and credit the datasets from which we have used certain data. If a referenced dataset has its own licensing terms, we strongly **urge users to adhere to its respective policies**.
+
+### 🔗 Referenced Datasets & Links
+
+SuperGPQA includes a limited portion of data sourced from the following datasets:
+
+- **[LawBench](https://lawbench.opencompass.org.cn/home)**
+- **[MedMCQA](https://medmcqa.github.io/)**
+- **[MedQA](https://github.com/jind11/MedQA)**
+- **[MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro)**
+- **[MMLU-CF](https://huggingface.co/datasets/microsoft/MMLU-CF)**
+- **[ShoppingMMLU](https://github.com/KL4805/ShoppingMMLU)**
+- **[UTMath](https://utmathhomepage.github.io/)**
+- **[MusicTheoryBench](https://ezmonyi.github.io/ChatMusician/)**
+- **[Omni-Math](https://omni-math.github.io/)**
+- **[U-MATH](https://toloka.ai/math-benchmark)**
+- **[Putnam-AXIOM](https://huggingface.co/Putnam-AXIOM)**
+- **[Short-form Factuality](https://github.com/openai/simple-evals)**
+- **[Chinese SimpleQA](https://openstellarteam.github.io/ChineseSimpleQA/)**
+- **[AIME-AOPS](https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions?srsltid=AfmBOooGfWIPceky_dYe-owTh_eTCSEqh2NCUi3FhVREjxJ5AeSjjhbo)**
+- **[AIMO Validation AIME](https://huggingface.co/datasets/AI-MO/aimo-validation-aime)**
+
+## ⚠️ Usage Notice
+
+1. **SuperGPQA is primarily composed of newly created data**, but it also incorporates a small fraction of transformed content from other datasets.
+2. If using SuperGPQA, please **comply with the original dataset licenses** when dealing with any referenced content.
+3. We encourage proper attribution—if you use SuperGPQA in your research, please **cite and acknowledge the original dataset contributors**.
 
 ## 📚 Citation
 
