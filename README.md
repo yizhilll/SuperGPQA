@@ -186,6 +186,10 @@ SuperGPQA includes a limited portion of data sourced from the following datasets
 2. If using SuperGPQA, please **comply with the original dataset licenses** when dealing with any referenced content.
 3. We encourage proper attribution—if you use SuperGPQA in your research, please **cite and acknowledge the original dataset contributors**.
 
+## 📜 License
+
+SuperGPQA is a composite dataset that includes both original content and portions of data derived from other sources. The dataset is made available under the Open Data Commons Attribution License (ODC-BY), which asserts no copyright over the underlying content. This means that while the dataset itself is freely available for use, you are required to give appropriate credit to the original creators of any third-party data included in SuperGPQA, in accordance with their respective licenses.
+
 ## 📚 Citation
 
 **BibTeX:**
