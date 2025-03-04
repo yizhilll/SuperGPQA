@@ -156,9 +156,13 @@ python eval/eval.py --evaluate_all --excel_output --json_output --output_dir res
 
 ## 📜 License
 
-SuperGPQA is released under the **CC0 license**, meaning that **MAP does not assert any rights** over the dataset. However, since a small portion of the dataset is derived from existing publicly available resources, **users must comply with the original dataset licenses when using those specific parts**.
+**SuperGPQA** is a composite dataset that includes both original content and portions of data derived from other sources. The dataset is made available under the **[Open Data Commons Attribution License (ODC-BY)](https://opendatacommons.org/licenses/by/)**, which asserts no copyright over the underlying content. 
 
-SuperGPQA is a large-scale benchmark designed to evaluate general-purpose question-answering abilities in complex reasoning tasks. The dataset primarily consists of **newly created** questions and tasks, supplemented with a selection of transformed data from existing benchmarks. While the majority of the dataset is original, we acknowledge and credit the datasets from which we have used certain data. If a referenced dataset has its own licensing terms, we strongly **urge users to adhere to its respective policies**.
+This means that while the dataset itself is freely available for use, you are required to:  
+- Give appropriate credit to the original creators of any third-party data included in SuperGPQA.  
+- Comply with the respective licenses of the referenced datasets.  
+
+For more details, please refer to the [ODC-BY License](https://opendatacommons.org/licenses/by/) and the licenses of the referenced datasets.
 
 ### 🔗 Referenced Datasets & Links
 
@@ -185,16 +189,6 @@ SuperGPQA includes a limited portion of data sourced from the following datasets
 1. **SuperGPQA is primarily composed of newly created data**, but it also incorporates a small fraction of transformed content from other datasets.
 2. If using SuperGPQA, please **comply with the original dataset licenses** when dealing with any referenced content.
 3. We encourage proper attribution—if you use SuperGPQA in your research, please **cite and acknowledge the original dataset contributors**.
-
-## 📜 License
-
-**SuperGPQA** is a composite dataset that includes both original content and portions of data derived from other sources. The dataset is made available under the **[Open Data Commons Attribution License (ODC-BY)](https://opendatacommons.org/licenses/by/)**, which asserts no copyright over the underlying content. 
-
-This means that while the dataset itself is freely available for use, you are required to:  
-- Give appropriate credit to the original creators of any third-party data included in SuperGPQA.  
-- Comply with the respective licenses of the referenced datasets.  
-
-For more details, please refer to the [ODC-BY License](https://opendatacommons.org/licenses/by/) and the licenses of the referenced datasets.
 
 ## 📚 Citation
 
