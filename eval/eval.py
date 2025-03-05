@@ -6,21 +6,38 @@ from prettytable import PrettyTable
 import pandas as pd
 from openpyxl.styles import PatternFill, Font, Alignment
 from tqdm import tqdm
-import timeout_decorator
+import threading
 import multiprocessing
 import time
 from functools import partial
 
-@timeout_decorator.timeout(5)  # 5 seconds timeout
-def safe_regex_search(pattern, text, flags=0):
-    try:
-        return re.search(pattern, text, flags)
-    except timeout_decorator.TimeoutError:
+# default 5 seconds timeout
+def safe_regex_search(pattern, text, flags=0, timeout=5):
+    result_container = []
+    stop_event = threading.Event()
+    
+    def worker():
+        try:
+            # Check if the thread should stop
+            if not stop_event.is_set():
+                result_container.append(re.search(pattern, text, flags))
+        except Exception as e:
+            print(f"Regex match error: {str(e)}")
+            result_container.append(None)
+    
+    thread = threading.Thread(target=worker, daemon=True)  # Set as daemon thread
+    thread.start()
+    
+    # Wait for the thread to finish within the timeout
+    thread.join(timeout=timeout)
+    
+    # If the thread is still running, set the stop event and return None
+    if thread.is_alive():
+        stop_event.set()  # Signal the thread to stop
         print(f"Regex match timeout: pattern={pattern}, text={text[:100]}...")
         return None
-    except Exception as e:
-        print(f"Regex match error: {str(e)}")
-        return None
+    
+    return result_container[0] if result_container else None
 
 def extract_option_labels(text, options='ABCDEFGHIJ'):
     if not isinstance(text, str) or not isinstance(options, str):
