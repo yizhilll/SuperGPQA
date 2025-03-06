@@ -6,38 +6,28 @@ from prettytable import PrettyTable
 import pandas as pd
 from openpyxl.styles import PatternFill, Font, Alignment
 from tqdm import tqdm
-import threading
+import timeout_decorator
 import multiprocessing
 import time
 from functools import partial
 
-# default 5 seconds timeout
-def safe_regex_search(pattern, text, flags=0, timeout=5):
-    result_container = []
-    stop_event = threading.Event()
+@timeout_decorator.timeout(5)  # 5 seconds timeout
+def safe_regex_search(pattern, text, flags=0):
+    """
+    TODO: The optimal solution for timeout detection is to use the 'regex' library instead of 're' for regular expression matching.
+    However, since the 'regex' and 're' libraries handle regex parsing differently, it has not been adopted for now.
     
-    def worker():
-        try:
-            # Check if the thread should stop
-            if not stop_event.is_set():
-                result_container.append(re.search(pattern, text, flags))
-        except Exception as e:
-            print(f"Regex match error: {str(e)}")
-            result_container.append(None)
-    
-    thread = threading.Thread(target=worker, daemon=True)  # Set as daemon thread
-    thread.start()
-    
-    # Wait for the thread to finish within the timeout
-    thread.join(timeout=timeout)
-    
-    # If the thread is still running, set the stop event and return None
-    if thread.is_alive():
-        stop_event.set()  # Signal the thread to stop
+    Issue: The current implementation using 'timeout_decorator' does not work on Windows platforms.
+    Reason: 'timeout_decorator' relies on signal-based timeouts, which are only supported on Unix-based systems and do not work on Windows.
+    """
+    try:
+        return re.search(pattern, text, flags)
+    except timeout_decorator.TimeoutError:
         print(f"Regex match timeout: pattern={pattern}, text={text[:100]}...")
         return None
-    
-    return result_container[0] if result_container else None
+    except Exception as e:
+        print(f"Regex match error: {str(e)}")
+        return None
 
 def extract_option_labels(text, options='ABCDEFGHIJ'):
     if not isinstance(text, str) or not isinstance(options, str):
@@ -659,7 +649,6 @@ def process_single_file(file_name, args):
                 model_name, mode = file_name.split(f'_{args.split}_')
                 split = args.split
                 mode = mode.replace('.jsonl', '')
-                mode = 'zero-shot'
                 if mode not in args.mode:
                     return None
             else:
